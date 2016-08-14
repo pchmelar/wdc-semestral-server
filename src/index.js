@@ -8,15 +8,16 @@ import Map from './views/Map';
 import About from './views/About';
 import NewPost from './views/NewPost';
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
 render((
   <Router history={browserHistory}>
     <Route path="/" component={Homepage} />
-    <Route path="/:id" component={App}>
+    <Route path="/:blogId" component={App}>
       <IndexRoute component={Timeline} />
-      <Route path="/:id/map" component={Map} />
-      <Route path="/:id/about" component={About} />
-      <Route path="/:id/newpost" component={NewPost} />
+      <Route path="/:blogId/map" component={Map} />
+      <Route path="/:blogId/about" component={About} />
+      <Route path="/:blogId/newpost" component={NewPost} />
     </Route>
   </Router>
 ), document.getElementById('root'));
