@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Grid } from 'react-bootstrap';
+import Header from '../components/Header';
+
+const gridStyles = {
+  border: '1px solid #DDDDDD'
+};
 
 class Homepage extends Component {
   render() {
     return (
-      <div>
-        <h2>Homepage</h2>
-        <ul>
-					<li><Link to="/john">John's Travel Diary</Link></li>
-        </ul>
-      </div>
+      <Grid style={gridStyles}>
+        <div className="hidden-xs">
+          <Header title="Travel Diary" />
+        </div>
+        <h2>Login Form</h2>
+      </Grid>
     );
   }
 }

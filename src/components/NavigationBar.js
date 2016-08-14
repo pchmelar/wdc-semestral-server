@@ -2,9 +2,14 @@ import React from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 
+const navbarStyles = {
+  margin: '0px -15px 0px -15px',
+  borderRadius: 0
+}
+
 const NavigationBar = (props) => (
-  <Navbar inverse>
-    <Navbar.Header>
+  <Navbar style={navbarStyles}>
+    <Navbar.Header className="visible-xs">
       <Navbar.Brand>
         <a href="#">React-Bootstrap</a>
       </Navbar.Brand>
