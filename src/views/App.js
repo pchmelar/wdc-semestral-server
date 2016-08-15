@@ -16,6 +16,7 @@ class Homepage extends Component {
           <Header title="John's Travel Diary" />
         </div>
         <NavigationBar blogId={this.props.params.blogId} />
+        <br />
         {this.props.children}
       </Grid>
     );
