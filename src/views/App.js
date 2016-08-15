@@ -4,7 +4,8 @@ import Header from '../components/Header';
 import NavigationBar from '../components/NavigationBar';
 
 const gridStyles = {
-  border: '1px solid #DDDDDD'
+  border: '3px solid #DDDDDD',
+  marginBottom: 100
 };
 
 class Homepage extends Component {
