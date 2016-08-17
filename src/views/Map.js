@@ -1,20 +1,15 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
 
-const gridStyles = {
-  margin: '-20px 0 0 0'
+const iframeStyles = {
+  flex: 1,
+  margin: '-20px 0 0 0',
+  border: 'none'
 };
 
 class Map extends Component {
   render() {
     return (
-      <Grid fluid style={gridStyles}>
-      	<Row>
-      		<Col>
-      			<iframe width="100%" height="600" frameBorder="0" style={{border: 0}} src="http://maps.google.com/maps?hl=cs&q=Adelaide&output=embed"></iframe>
-      		</Col>
-      	</Row>
-      </Grid>
+      <iframe width="100%" height="100%" frameBorder="0" style={iframeStyles} src="http://maps.google.com/maps?hl=cs&q=Adelaide&output=embed"></iframe>
     );
   }
 }
