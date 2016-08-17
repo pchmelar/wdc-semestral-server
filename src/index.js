@@ -7,8 +7,8 @@ import Timeline from './views/Timeline';
 import Map from './views/Map';
 import About from './views/About';
 import NewPost from './views/NewPost';
-import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import './index.css';
 
 render((
   <Router history={browserHistory}>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap';
 import Post from '../components/Post';
 
 // obtain posts from API
@@ -18,21 +18,24 @@ const posts = [
 	},
 ];
 
+const outerDivStyles = {
+  margin: '0 0 50px 0'
+};
+
 class Timeline extends Component {
   render() {
     return (
-      <div>
+      <Grid>
         <Row>
           <Col sm={12} smOffset={0} md={10} mdOffset={1} lg={8} lgOffset={2}>
-    				{posts.map(function(object, i){
-        			return <Post post={object} key={i} />;
-    				})}  
+          	<div style={outerDivStyles}>
+    					{posts.map(function(object, i){
+        				return <Post post={object} key={i} />;
+    					})}
+    				</div>  
 					</Col>
         </Row>
-        <br />
-        <br />
-        <br />
-      </div>
+      </Grid>
     );
   }
 }

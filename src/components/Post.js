@@ -2,9 +2,11 @@ import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 
 const outerDivStyles = {
-	margin: '30px 0px 0px 0px',
-	padding: '0px 20px 10px 20px',
-	border: '1px solid black'
+	margin: '30px 0 0 0',
+	padding: '0 20px 10px 20px',
+	backgroundColor: '#FFFFFF',
+	border: '1px solid #E8E8E8',
+	borderRadius: 5
 }
 
 const pStyles = {
@@ -14,7 +16,7 @@ const pStyles = {
 }
 
 const locationStyles = {
-	padding: '15px 0px 0px 0px',
+	padding: '15px 0 0 0',
 	textAlign: 'right'
 }
 

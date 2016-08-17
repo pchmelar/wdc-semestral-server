@@ -3,8 +3,8 @@ import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 
 const navbarStyles = {
-  margin: '0px -15px 0px -15px',
-  borderRadius: 0
+  borderRadius: 0,
+  backgroundColor: '#FFFFFF'
 }
 
 const NavigationBar = (props) => (
