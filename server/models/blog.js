@@ -5,16 +5,17 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 // create a schema
-let postSchema = new Schema({
+let blogSchema = new Schema({
+	blogid: { type: String, index: true },
+	email: String,
+	pass: String,
 	title: String,
-	content: String,
-	location: String,
-	date: Date
+	about: String
 });
 
 // the schema is useless so far
 // we need to create a model using it
-let Post = mongoose.model('post', postSchema, 'post');
+let Blog = mongoose.model('blog', blogSchema, 'blog');
 
 // make this available to our users in our Node applications
-module.exports = Post;
+module.exports = Blog;

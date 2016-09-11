@@ -1,20 +1,22 @@
+'use strict'
+
 // express
-var express = require('express');
-var app = express();
+let express = require('express');
+let app = express();
 app.set('json spaces', 4);
 
 // bodyParser
-var bodyParser = require('body-parser');
+let bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // mongoDB
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 mongoose.connect(process.env.PROD_MONGODB || 'mongodb://localhost/wdc');
 
 // routes
-var post = require('./routes/postRouter');
-app.use('/post', post);
+let blog = require('./routes/blogRouter');
+app.use('/:id', blog);
 
 app.get('/', function(req, res) {
   res.type('text/plain'); // set content-type
