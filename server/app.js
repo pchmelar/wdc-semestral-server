@@ -16,10 +16,9 @@ mongoose.Promise = global.Promise;
 mongoose.connect(process.env.PROD_MONGODB || 'mongodb://localhost/wdc');
 
 // routes
-let blog = require('./routes/blogRouter');
-let post = require('./routes/postRouter');
-app.use('/blog', blog);
-app.use('/blog/:id/post', post);
+app.use('/blog', require('./routes/blogRouter'));
+app.use('/blog/:id/post', require('./routes/postRouter'));
+app.use('/login', require('./routes/loginRouter'));
 
 app.get('/', function(req, res) {
   res.type('text/plain'); // set content-type
