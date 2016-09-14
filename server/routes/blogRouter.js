@@ -31,7 +31,7 @@ module.exports = (function() {
       !req.body.hasOwnProperty('title') ||
       !req.body.hasOwnProperty('about')) {
       res.statusCode = 400;
-      res.send('Error 400: Post syntax incorrect.');
+      res.send('Error 400: POST syntax incorrect.');
     } else {
 
       // check if blogid is unique

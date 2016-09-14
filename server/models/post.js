@@ -9,7 +9,10 @@ let postSchema = new Schema({
 	title: String,
 	content: String,
 	location: String,
-	date: Date
+	blogid: String,
+},
+{
+	timestamps: true
 });
 
 // the schema is useless so far
