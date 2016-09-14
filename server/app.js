@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // mongoDB
 let mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 mongoose.connect(process.env.PROD_MONGODB || 'mongodb://localhost/wdc');
 
 // routes

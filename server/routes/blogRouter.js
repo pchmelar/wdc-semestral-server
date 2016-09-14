@@ -5,6 +5,7 @@ module.exports = (function() {
   let mongoose = require('mongoose');
   let router = require('express').Router();
   let Blog = require('../models/blog');
+  let bcrypt = require('bcrypt');
 
   router.get('/', function(req, res) {
     Blog.find({}, { 'email': false, 'pass': false }, function(err, blogs) {
@@ -50,21 +51,26 @@ module.exports = (function() {
               res.send('Error 409: Blog with specified email already exists');
             } else {
 
-              // create a new object
-              var newBlog = Blog({
-                blogid: req.body.blogid,
-                email: req.body.email,
-                pass: req.body.pass,
-                title: req.body.title,
-                about: req.body.about
+              // hash the password with bcrypt
+              bcrypt.hash(req.body.pass, 10, function(err, hash) {
+                
+                // create a new object
+                var newBlog = Blog({
+                  blogid: req.body.blogid,
+                  email: req.body.email,
+                  pass: hash,
+                  title: req.body.title,
+                  about: req.body.about
+                });
+
+                // save the object
+                newBlog.save(function(err) {
+                  if (err) throw err;
+                  res.statusCode = 201;
+                  res.json(true);
+                });
               });
 
-              // save the object
-              newBlog.save(function(err) {
-                if (err) throw err;
-                res.statusCode = 201;
-                res.json(true);
-              });
             }
           });
         }
