@@ -17,7 +17,6 @@ mongoose.connect(process.env.PROD_MONGODB || 'mongodb://localhost/wdc');
 
 // routes
 app.use('/blog', require('./routes/blogRouter'));
-app.use('/blog/:id/post', require('./routes/postRouter'));
 app.use('/login', require('./routes/loginRouter'));
 
 app.get('/', function(req, res) {
