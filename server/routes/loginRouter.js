@@ -24,9 +24,7 @@ module.exports = (function() {
           bcrypt.compare(req.body.pass, blog.pass, function(err, bcryptRes) {
             if (bcryptRes == true) {
               res.json({
-                'blogid': blog.blogid,
-                'title': blog.title,
-                'about': blog.about
+                'blogid': blog.blogid
               });
             } else {
               res.statusCode = 403;

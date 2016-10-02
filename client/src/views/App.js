@@ -8,7 +8,7 @@ const outerDivStyles = {
   flexFlow: 'column'
 };
 
-class Homepage extends Component {
+class App extends Component {
   render() {
     return (
       <div style={outerDivStyles}>
@@ -22,4 +22,4 @@ class Homepage extends Component {
   }
 }
 
-export default Homepage;
+export default App;

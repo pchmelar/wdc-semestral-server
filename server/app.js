@@ -15,6 +15,13 @@ let mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.PROD_MONGODB || 'mongodb://localhost/wdc');
 
+// CORS headers
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 // routes
 app.use('/blog', require('./routes/blogRouter'));
 app.use('/login', require('./routes/loginRouter'));
