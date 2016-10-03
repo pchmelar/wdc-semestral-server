@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
-import axios from 'axios';
 import Header from '../components/Header';
 import LoginForm from '../components/LoginForm';
 import RegForm from '../components/RegForm';
@@ -11,18 +10,8 @@ const outerDivStyles = {
 };
 
 class Homepage extends Component {
-  login(email, password) {
-    axios.post('http://localhost:8080/login', {
-        email: email,
-        pass: password
-      })
-      .then(function(response) {
-        // console.log(response);
-        browserHistory.push(response.data.blogid);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+  loginSuccess = (res) => {
+    browserHistory.push(res.data.blogid);
   }
   render() {
     return (
@@ -34,7 +23,7 @@ class Homepage extends Component {
               <Col sm={10} smOffset={1} md={8} mdOffset={2}>
                 <h2 style={{textAlign: 'center'}}>Your travel diary</h2>
                 <br />
-                <LoginForm onSubmit={this.login} />
+                <LoginForm onSuccess={this.loginSuccess} />
               </Col>
             </Row>
             <br />

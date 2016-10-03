@@ -17,8 +17,8 @@ module.exports = (function() {
       Blog.findOne({ email: req.body.email }, function(err, blog) {
         if (err) throw err;
         if (blog === null) {
-          res.statusCode = 404;
-          res.send('Error 404: User with specified email not found');
+          res.statusCode = 403;
+          res.send('Error 403: Wrong email or password');
         } else {
           // compare the password with bcrypt hash
           bcrypt.compare(req.body.pass, blog.pass, function(err, bcryptRes) {
@@ -28,7 +28,7 @@ module.exports = (function() {
               });
             } else {
               res.statusCode = 403;
-              res.send('Error 403: Wrong password')
+              res.send('Error 403: Wrong email or password')
             }
           });
         }
