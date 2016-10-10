@@ -5,8 +5,8 @@ import axios from 'axios';
 
 const outerDivStyles = {
   height: '100%',
-  display: 'flex',
-  flexFlow: 'column'
+  // display: 'flex',
+  // flexFlow: 'column'
 };
 
 class App extends Component {

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
 const iframeStyles = {
-  flex: 1,
+  // flex: 1,
+  height: '100%',
   margin: '-20px 0 0 0',
   border: 'none'
 };
