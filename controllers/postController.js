@@ -60,7 +60,11 @@ exports.create = function(req, res) {
         var newPost = Post({
           title: req.body.title,
           content: req.body.content,
-          location: req.body.location,
+          location: {
+            description: req.body.location.description,
+            lat: req.body.location.lat,
+            lng: req.body.location.lng
+          },
           blogid: req.params.blogid
         });
 
@@ -93,7 +97,11 @@ exports.update = function(req, res) {
             // update the object
             if (req.body.hasOwnProperty('title')) post.title = req.body.title;
             if (req.body.hasOwnProperty('content')) post.content = req.body.content;
-            if (req.body.hasOwnProperty('location')) post.location = req.body.location;
+            if (req.body.hasOwnProperty('location')) {
+              post.location.description = req.body.location.description;
+              post.location.lat = req.body.location.lat;
+              post.location.lng = req.body.location.lng;
+            } 
 
             // save the object
             post.save(function(err) {

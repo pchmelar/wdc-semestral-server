@@ -76,7 +76,11 @@ Status codes: 200 - ok, 400 - bad request, 404 - not found
 	{
 		"title": String,
 		"content": String,
-		"location": String,
+		"location": {
+			"description": String,
+			"lat": Number,
+			"lng": Number
+		},
 		"blogid": String
 	}
 ]
@@ -89,7 +93,11 @@ Status codes: 200 - ok, 400 - bad request, 404 - not found
 {
 	"title": String,
 	"content": String,
-	"location": String,
+	"location": {
+		"description": String,
+		"lat": Number,
+		"lng": Number
+	},
 	"blogid": String
 }
 ```
@@ -101,7 +109,11 @@ Status codes: 201 - created, 400 - bad request, 404 - not found
 {
 	"title": String,
 	"content": String,
-	"location": String
+	"location": {
+		"description": String,
+		"lat": Number,
+		"lng": Number
+	}
 }
 ```
 
@@ -112,7 +124,11 @@ Status codes: 200 - ok, 400 - bad request, 404 - not found
 {
 	"title": String,
 	"content": String,
-	"location": String
+	"location": {
+		"description": String,
+		"lat": Number,
+		"lng": Number
+	}
 }
 ```
 

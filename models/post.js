@@ -8,7 +8,11 @@ let Schema = mongoose.Schema;
 let postSchema = new Schema({
 	title: String,
 	content: String,
-	location: String,
+	location: {
+		description: String,
+		lat: Number, 
+		lng: Number
+	},
 	blogid: String,
 },
 {
