@@ -6,6 +6,7 @@ module.exports = (function() {
   let router = require('express').Router();
   let Blog = require('../models/blog');
   let bcrypt = require('bcrypt');
+  let jwt = require('jsonwebtoken');
 
   router.post('/', function(req, res) {
 
@@ -23,8 +24,15 @@ module.exports = (function() {
           // compare the password with bcrypt hash
           bcrypt.compare(req.body.pass, blog.pass, function(err, bcryptRes) {
             if (bcryptRes == true) {
+
+              // create a token
+              let token = jwt.sign({user: req.body.email}, (process.env.PROD_JWTKEY || 'secretKey'), {
+                expiresIn: '24h'
+              });
+
               res.json({
-                'blogid': blog.blogid
+                'blogid': blog.blogid,
+                'token': token
               });
             } else {
               res.statusCode = 403;

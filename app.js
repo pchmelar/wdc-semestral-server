@@ -23,8 +23,8 @@ app.use(function(req, res, next) {
 });
 
 // routes
-app.use('/blog', require('./routes/blogRouter'));
 app.use('/login', require('./routes/loginRouter'));
+app.use('/blog', require('./routes/blogRouter'));
 
 app.get('/', function(req, res) {
   res.type('text/plain'); // set content-type

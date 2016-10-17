@@ -82,15 +82,23 @@ exports.update = function(req, res) {
       res.send('Error 404: Blog with specified ID not found');
     } else {
 
-      // update the object
-      if (req.body.hasOwnProperty('title')) blog.title = req.body.title;
-      if (req.body.hasOwnProperty('about')) blog.about = req.body.about;
+      // user authorization
+      if (req.token.user === blog.email) {
 
-      // save the object
-      blog.save(function(err) {
-        if (err) throw err;
-        res.json(true);
-      });
+        // update the object
+        if (req.body.hasOwnProperty('title')) blog.title = req.body.title;
+        if (req.body.hasOwnProperty('about')) blog.about = req.body.about;
+
+        // save the object
+        blog.save(function(err) {
+          if (err) throw err;
+          res.json(true);
+        });
+
+      } else {
+        res.statusCode = 401;
+        res.send('Error 401: Unauthorized')
+      }
     }
   });
 };
@@ -102,10 +110,20 @@ exports.delete = function(req, res) {
       res.statusCode = 404;
       res.send('Error 404: Blog with specified ID not found');
     } else {
-      blog.remove(function(err) {
-        if (err) throw err;
-        res.json(true);
-      });
+
+      // user authorization
+      if (req.token.user === blog.email) {
+
+        // delete the object
+        blog.remove(function(err) {
+          if (err) throw err;
+          res.json(true);
+        });
+
+      } else {
+        res.statusCode = 401;
+        res.send('Error 401: Unauthorized')
+      }
     }
   });
 };

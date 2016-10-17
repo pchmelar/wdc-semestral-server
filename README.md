@@ -1,24 +1,33 @@
-# WDC API
-Simple API for Web and Database Computing Project @ UNI Adelaide  
-Live example on https://fierce-ridge-28571.herokuapp.com
+# WDC SERVER
+Simple Node.js server and API for Web and Database Computing Project @ UNI Adelaide  
+Live demo on https://fierce-ridge-28571.herokuapp.com
 
 ## Resource: login
 
-POST /login - log user into app  
-Status codes: 200 - ok, 400 - bad request, 403 - wrong email or password
+### POST /login - log user into app  
 
+Request:
 ```json
 {
 	"email": String,
 	"pass": String
 }
 ```
+Response:
+```json
+{
+	"blogid": String,
+	"token": String
+}
+```
+
+Status codes: 200 OK, 400 Bad Request, 403 Forbidden
 
 ## Resource: blog
 
-GET /blog - get list of blogs  
-Status codes: 200 - ok, 400 - bad request
+### GET /blog - get list of blogs  
 
+Response:
 ```json
 [
 	{
@@ -29,9 +38,11 @@ Status codes: 200 - ok, 400 - bad request
 ]
 ```
 
-GET /blog/:blogid - get specific blog  
-Status codes: 200 - ok, 400 - bad request, 404 - not found
+Status codes: 200 OK, 400 Bad Request
 
+### GET /blog/:blogid - get specific blog  
+
+Response:
 ```json
 {
 	"blogid": String,
@@ -40,9 +51,11 @@ Status codes: 200 - ok, 400 - bad request, 404 - not found
 }
 ```
 
-POST /blog - create blog  
-Status codes: 201 - created, 400 - bad request, 409 - already exists
+Status codes: 200 OK, 400 Bad Request, 404 Not Found
 
+### POST /blog - create blog  
+
+Request:
 ```json
 {
 	"blogid": String,
@@ -53,9 +66,11 @@ Status codes: 201 - created, 400 - bad request, 409 - already exists
 }
 ```
 
-PUT /blog/:blogid - update specific blog  
-Status codes: 200 - ok, 400 - bad request, 404 - not found
+Status codes: 201 Created, 400 Bad Request, 409 Conflict
 
+### PUT /blog/:blogid - update specific blog  
+
+Request:
 ```json
 {
 	"title": String,
@@ -63,14 +78,19 @@ Status codes: 200 - ok, 400 - bad request, 404 - not found
 }
 ```
 
-DELETE /blog/:blogid - delete specific blog  
-Status codes: 200 - ok, 400 - bad request, 404 - not found
+JWT token must be provided along with the request   
+Status codes: 200 OK, 400 Bad Request, 401 Unauthorized, 404 Not Found
+
+### DELETE /blog/:blogid - delete specific blog  
+
+JWT token must be provided along with the request   
+Status codes: 200 OK, 400 Bad Request, 401 Unauthorized, 404 Not Found
 
 ## Resource: post
 
-GET /blog/:blogid/post - get list of posts of specific blog  
-Status codes: 200 - ok, 400 - bad request, 404 - not found
+### GET /blog/:blogid/post - get list of posts of specific blog  
 
+Response:
 ```json
 [
 	{
@@ -86,9 +106,11 @@ Status codes: 200 - ok, 400 - bad request, 404 - not found
 ]
 ```
 
-GET /blog/:blogid/post/:postid - get specific post of specific blog  
-Status codes: 200 - ok, 400 - bad request, 404 - not found
+Status codes: 200 OK, 400 Bad Request, 404 Not Found
 
+### GET /blog/:blogid/post/:postid - get specific post of specific blog  
+
+Response:
 ```json
 {
 	"title": String,
@@ -102,9 +124,11 @@ Status codes: 200 - ok, 400 - bad request, 404 - not found
 }
 ```
 
-POST /blog/:blogid/post - create post for specific blog  
-Status codes: 201 - created, 400 - bad request, 404 - not found
+Status codes: 200 OK, 400 Bad Request, 404 Not Found
 
+### POST /blog/:blogid/post - create post for specific blog  
+
+Request:
 ```json
 {
 	"title": String,
@@ -117,9 +141,12 @@ Status codes: 201 - created, 400 - bad request, 404 - not found
 }
 ```
 
-PUT /blog/:blogid/post/:postid - update specific post of specific blog  
-Status codes: 200 - ok, 400 - bad request, 404 - not found
+JWT token must be provided along with the request   
+Status codes: 201 Created, 400 Bad Request, 401 Unauthorized, 404 Not Found
 
+### PUT /blog/:blogid/post/:postid - update specific post of specific blog  
+
+Request:
 ```json
 {
 	"title": String,
@@ -132,5 +159,10 @@ Status codes: 200 - ok, 400 - bad request, 404 - not found
 }
 ```
 
-DELETE /blog/:blogid/post/:postid - delete specific post of specific blog  
-Status codes: 200 - ok, 400 - bad request, 404 - not found
+JWT token must be provided along with the request   
+Status codes: 200 OK, 400 Bad Request, 401 Unauthorized, 404 Not Found
+
+### DELETE /blog/:blogid/post/:postid - delete specific post of specific blog  
+
+JWT token must be provided along with the request   
+Status codes: 200 OK, 400 Bad Request, 401 Unauthorized, 404 Not Found

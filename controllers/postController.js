@@ -27,7 +27,7 @@ exports.view = function(req, res) {
       res.send('Error 404: Blog with specified ID not found');
     } else {
       if (mongoose.Types.ObjectId.isValid(req.params.postid)) {
-        Post.findById(req.params.postid, function(err, post) {
+        Post.findOne({ _id: req.params.postid, blogid: req.params.blogid }, function(err, post) {
           if (err) throw err;
           if (post == null) {
             res.statusCode = 404;
@@ -56,24 +56,32 @@ exports.create = function(req, res) {
         res.send('Error 400: POST syntax incorrect.');
       } else {
 
-        // create a new object
-        var newPost = Post({
-          title: req.body.title,
-          content: req.body.content,
-          location: {
-            description: req.body.location.description,
-            lat: req.body.location.lat,
-            lng: req.body.location.lng
-          },
-          blogid: req.params.blogid
-        });
+        // user authorization
+        if (req.token.user === blog.email) {
 
-        // save the object
-        newPost.save(function(err) {
-          if (err) throw err;
-          res.statusCode = 201;
-          res.json(true);
-        });
+          // create a new object
+          var newPost = Post({
+            title: req.body.title,
+            content: req.body.content,
+            location: {
+              description: req.body.location.description,
+              lat: req.body.location.lat,
+              lng: req.body.location.lng
+            },
+            blogid: req.params.blogid
+          });
+
+          // save the object
+          newPost.save(function(err) {
+            if (err) throw err;
+            res.statusCode = 201;
+            res.json(true);
+          });
+
+        } else {
+          res.statusCode = 401;
+          res.send('Error 401: Unauthorized')
+        }
       }
     }
   });
@@ -87,27 +95,35 @@ exports.update = function(req, res) {
       res.send('Error 404: Blog with specified ID not found');
     } else {
       if (mongoose.Types.ObjectId.isValid(req.params.postid)) {
-        Post.findById(req.params.postid, function(err, post) {
+        Post.findOne({ _id: req.params.postid, blogid: req.params.blogid }, function(err, post) {
           if (err) throw err;
           if (post == null) {
             res.statusCode = 404;
             res.send('Error 404: Post with specified ID not found');
           } else {
 
-            // update the object
-            if (req.body.hasOwnProperty('title')) post.title = req.body.title;
-            if (req.body.hasOwnProperty('content')) post.content = req.body.content;
-            if (req.body.hasOwnProperty('location')) {
-              post.location.description = req.body.location.description;
-              post.location.lat = req.body.location.lat;
-              post.location.lng = req.body.location.lng;
-            } 
+            // user authorization
+            if (req.token.user === blog.email) {
 
-            // save the object
-            post.save(function(err) {
-              if (err) throw err;
-              res.json(true);
-            });
+              // update the object
+              if (req.body.hasOwnProperty('title')) post.title = req.body.title;
+              if (req.body.hasOwnProperty('content')) post.content = req.body.content;
+              if (req.body.hasOwnProperty('location')) {
+                post.location.description = req.body.location.description;
+                post.location.lat = req.body.location.lat;
+                post.location.lng = req.body.location.lng;
+              }
+
+              // save the object
+              post.save(function(err) {
+                if (err) throw err;
+                res.json(true);
+              });
+
+            } else {
+              res.statusCode = 401;
+              res.send('Error 401: Unauthorized')
+            }
           }
         });
       } else {
@@ -126,16 +142,26 @@ exports.delete = function(req, res) {
       res.send('Error 404: Blog with specified ID not found');
     } else {
       if (mongoose.Types.ObjectId.isValid(req.params.postid)) {
-        Post.findById(req.params.postid, function(err, post) {
+        Post.findOne({ _id: req.params.postid, blogid: req.params.blogid }, function(err, post) {
           if (err) throw err;
           if (post == null) {
             res.statusCode = 404;
             res.send('Error 404: Post with specified ID not found');
           } else {
-            post.remove(function(err) {
-              if (err) throw err;
-              res.json(true);
-            });
+
+            // user authorization
+            if (req.token.user === blog.email) {
+
+              // remove the object
+              post.remove(function(err) {
+                if (err) throw err;
+                res.json(true);
+              });
+
+            } else {
+              res.statusCode = 401;
+              res.send('Error 401: Unauthorized')
+            }
           }
         });
       } else {
