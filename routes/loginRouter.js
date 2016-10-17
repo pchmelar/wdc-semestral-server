@@ -32,6 +32,7 @@ module.exports = (function() {
 
               res.json({
                 'blogid': blog.blogid,
+                'email': blog.email,
                 'token': token
               });
             } else {

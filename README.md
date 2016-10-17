@@ -18,6 +18,7 @@ Response:
 ```json
 {
 	"blogid": String,
+	"email": String,
 	"token": String
 }
 ```
