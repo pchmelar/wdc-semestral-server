@@ -1,8 +1,9 @@
 # WDC SERVER
-Simple Node.js server and API for Web and Database Computing Project @ UNI Adelaide  
+Simple Node.js server and API for Web and Database Computing Project @ UNI Adelaide   
+Using bcrypt for password hashing and JWT for user authentication   
 Live demo on https://fierce-ridge-28571.herokuapp.com
 
-## Resource: login
+## Resource /login
 
 ### POST /login - log user into app  
 
@@ -23,7 +24,7 @@ Response:
 
 Status codes: 200 OK, 400 Bad Request, 403 Forbidden
 
-## Resource: blog
+## Resource /blog
 
 ### GET /blog - get list of blogs  
 
@@ -86,7 +87,7 @@ Status codes: 200 OK, 400 Bad Request, 401 Unauthorized, 404 Not Found
 JWT token must be provided along with the request   
 Status codes: 200 OK, 400 Bad Request, 401 Unauthorized, 404 Not Found
 
-## Resource: post
+## Resource /post
 
 ### GET /blog/:blogid/post - get list of posts of specific blog  
 
