@@ -1,7 +1,8 @@
 # WDC SERVER
 Simple Node.js server and API for Web and Database Computing Project @ UNI Adelaide   
 Using bcrypt for password hashing and JWT for user authentication   
-Live demo on https://fierce-ridge-28571.herokuapp.com
+Live demo: https://fierce-ridge-28571.herokuapp.com   
+Associated client: https://github.com/pchmelar/wdc-semestral-client
 
 ## Resource /login
 
