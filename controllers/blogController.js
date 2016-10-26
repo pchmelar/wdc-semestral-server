@@ -3,6 +3,7 @@
 let mongoose = require('mongoose');
 let Blog = require('../models/blog');
 let bcrypt = require('bcrypt');
+let jwt = require('jsonwebtoken');
 
 exports.list = function(req, res) {
   Blog.find({}, { 'email': false, 'pass': false }, function(err, blogs) {
@@ -63,7 +64,18 @@ exports.create = function(req, res) {
               newBlog.save(function(err) {
                 if (err) throw err;
                 res.statusCode = 201;
-                res.json(true);
+
+                // create a token
+                let token = jwt.sign({ user: req.body.email }, (process.env.PROD_JWTKEY || 'secretKey'), {
+                  expiresIn: '24h'
+                });
+
+                res.json({
+                  'blogid': req.body.blogid,
+                  'email': req.body.email,
+                  'token': token
+                });
+
               });
             });
 

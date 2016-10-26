@@ -67,6 +67,14 @@ Request:
 	"about": String
 }
 ```
+Response:
+```json
+{
+	"blogid": String,
+	"email": String,
+	"token": String
+}
+```
 
 Status codes: 201 Created, 400 Bad Request, 409 Conflict
 
