@@ -11,7 +11,7 @@ exports.list = function(req, res) {
       res.statusCode = 404;
       res.send('Error 404: Blog with specified ID not found');
     } else {
-      Post.find({ blogid: req.params.blogid }, { sort: '-createdAt' }, function(err, posts) {
+      Post.find({ blogid: req.params.blogid }, {}, { sort: '-createdAt' }, function(err, posts) {
         if (err) throw err;
         res.json(posts);
       });
