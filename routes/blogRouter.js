@@ -14,7 +14,7 @@ module.exports = (function() {
   router.get('/:blogid/post/:postid', post.view);
 
   // route middleware to verify a token (user authentication)
-  router.use(function(req, res, next) {
+  function checkToken(req, res, next) {
     // check header or url parameters or post parameters for token
     var token = req.body.token || req.query.token || req.headers['x-access-token'];
     if (token) {
@@ -32,13 +32,13 @@ module.exports = (function() {
       res.statusCode = 401;
       res.send('Error 401: No token provided')
     }
-  });
+  }
 
-  router.put('/:blogid', blog.update);
-  router.delete('/:blogid', blog.delete);
-  router.post('/:blogid/post/', post.create);
-  router.put('/:blogid/post/:postid', post.update);
-  router.delete('/:blogid/post/:postid', post.delete);
+  router.put('/:blogid', checkToken, blog.update);
+  router.delete('/:blogid', checkToken, blog.delete);
+  router.post('/:blogid/post/', checkToken, post.create);
+  router.put('/:blogid/post/:postid', checkToken, post.update);
+  router.delete('/:blogid/post/:postid', checkToken, post.delete);
 
   return router;
 
